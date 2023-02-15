@@ -6,6 +6,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@chec/commerce.js": "^2.8.0",
     "@next/font": "^13.1.6",
     "next": "latest",
     "react": "18.2.0",
