@@ -1,38 +1,27 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* FONTS  */
+@font-face {
+  font-family: "Cabinet";
+  src: local("clashDisplay"), url("../public/fonts/CabinetGrotesk-Regular.otf") format("opentype") 
+}
+@font-face {
+  font-family: "Cabinet-bold";
+  src: local("clashDisplay"), url("../public/fonts/CabinetGrotesk-Bold.otf") format("opentype") 
+}
+@font-face {
+  font-family: "Cabinet-medium";
+  src: local("clashDisplay"), url("../public/fonts/CabinetGrotesk-Medium.otf") format("opentype") 
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+html {
+font-family: Cabinet;
+scroll-behavior: smooth;
+
 }
 
-* {
-  box-sizing: border-box;
-}
 
-img {
-  max-width: 100%;
-  height: auto;
-}
 
-h1,
-h2,
-p,
-ul {
-  margin: 0;
-}
 
-ul {
-  padding: 0;
-  list-style: none;
-}
-
-button {
-  padding: 0.5rem 1rem;
-  font-weight: bold;
-}
