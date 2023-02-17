@@ -77,9 +77,6 @@ const Navbar = () => {
           <div className="items-center justify-center">
             <ul className="flex space-x-6 items-center justify-center text-xl">
               <li className="cursor-pointer">
-                <AiOutlineSearch />
-              </li>
-              <li className="cursor-pointer">
                 <AiOutlineHeart />
               </li>
               <li className="cursor-pointer">

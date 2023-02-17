@@ -1,17 +1,27 @@
-import Head from 'next/head';
-// import styles from '../styles/Home.module.css';
+import commerce from "../lib/commerce";
+import ProductList from "../components/ProductList";
+import ShopByCart from "../components/ShopbyCategories";
 
-export default function Home() {
+export async function getStaticProps() {
+  const merchant = await commerce.merchants.about();
+  const { data: categories } = await commerce.categories.list();
+  const { data: products } = await commerce.products.list();
+
+  return {
+    props: {
+      merchant,
+      categories,
+      products
+    }
+  }
+}
+
+export default function IndexPage({ merchant, categories, products }) {
   return (
     <>
-      <Head>
-        <title>Home | FashionFlair</title>
-      </Head>
-      
-
-      <div>
-      Homepage
-      </div>
+      <h1>{merchant.business_name}</h1>
+      <ShopByCart categories={categories} />
+      <ProductList products={products} />
     </>
-  )
+  );
 }
