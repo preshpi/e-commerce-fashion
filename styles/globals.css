@@ -19,9 +19,17 @@
 html {
 font-family: Cabinet;
 scroll-behavior: smooth;
-
 }
 
 
+.react-multiple-carousel__arrow::before {
+  font-size:13px;
+  color:black;
+}
 
-
+.react-multiple-carousel__arrow{
+  background: rgb(255, 255, 255, 0.5);
+}
+.react-multiple-carousel__arrow:hover{
+  background: white;
+}

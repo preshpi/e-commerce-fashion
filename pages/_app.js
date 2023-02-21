@@ -6,7 +6,7 @@ const App = ({ Component, pageProps }) => {
   return (
     <div>
       <Layout>
-        <div className="w-[95%] mx-auto">
+        <div className="">
           <CartProvider>
             <Component {...pageProps} />
           </CartProvider>
