@@ -1,67 +1,66 @@
-import Link from "next/link";
 import Product from "./Prod";
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
-import Image from "next/image";
-import TrendProduct from './TrendProduct';
-export default function ProductList({ products }) {
+import { useState } from "react";
+import { useCartDispatch } from "../pages/context/cart";
+import commerce from "../lib/commerce";
+import toast, { Toaster } from 'react-hot-toast';
+
+const ProductCard = ({ product }) => {
+  console.log(product);
+  
+  const { setCart } = useCartDispatch()
+  const addToCart = () => commerce.cart.add(product.id).then(({cart}) => setCart(cart))
+  const [showCart, setShowCart] = useState(false);
+  const handleMouseEnter = () => setShowCart(true);
+  const handleMouseLeave = () => setShowCart(false);
+  const notify = () => toast('Added to cart!');
+
+
+  const handleCart = () => {
+    notify()
+    addToCart()
+  }
+
+  
+  return (
+    <div
+      className="grid justify-center items-center h-[400px]"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <div className="relative">
+        
+        <img src={product.image.url} alt="clothes" className="w-[300px] h-[300px] object-cover" />
+        {showCart && (
+          <div className="absolute bottom-10 w-full">
+            <button
+              className="bg-white text-black font-bold py-2 px-4 rounded text-center mx-auto w-[70%] justify-center items-center flex"
+              onClick={handleCart}
+            >
+              Add To Cart
+            </button>
+            <Toaster />
+          </div>
+        )}
+      </div>
+        <Product {...product} />
+    </div>
+  );
+};
+
+const ProductList = ({ products }) => {
   if (!products) return null;
-  console.log(products);
 
   return (
-    <div  className="w-[95%] mx-auto  mt-[7%]">
-      <h3 className="text-[28px] font-bold mb-3">#NewSale</h3>
-        <Carousel
-          dots={false}
-          draggable
-          swipeable
-          arrows={true}
-          partialVisible={true}
-          infinite
-          responsive={{
-            desktop: {
-              breakpoint: {
-                max: 3000,
-                min: 1024,
-              },
-              items: 5,
-              partialVisibilityGutter: 40,
-            },
-            mobile: {
-              breakpoint: {
-                max: 464,
-                min: 0,
-              },
-              items: 1,
-              partialVisibilityGutter: 30,
-            },
-            tablet: {
-              breakpoint: {
-                max: 1024,
-                min: 464,
-              },
-              items: 2,
-              partialVisibilityGutter: 30,
-            },
-          }}
-        >
-          {products.map((product) => (
-            <div
-              key={product.permalink}
-              className="flex justify-center items-center p-5 h-64 border"
-            >
-              {/* <Image src={product.Image.filename} alt="product-image"/> */}
+    <div className="w-[95%] mx-auto mt-[4%]">
+      <h3 className="text-[28px] font-bold mb-3 text-center">#NewSale</h3>
+      <div className="grid-cols-5 grid gap-[20px]">
+      {products.map((product) => (
+        <ProductCard key={product.permalink} product={product} />
+      ))}        
+      </div>
 
-              <Link href={`/products/${product.permalink}`}>
-                <div className="w-full h-full">
-                  <Product {...product} />
-                </div>
-              </Link>
-            </div>
-          ))}
-        </Carousel>
-      <TrendProduct/>
     </div>
-
   );
-}
+};
+
+export default ProductList;

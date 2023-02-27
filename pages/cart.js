@@ -4,9 +4,8 @@ import commerce from "../lib/commerce";
 
 function CartItem({ id, name, quantity, line_total }) {
   const { setCart } = useCartDispatch();
-
-  const handleUpdateCart = ({ cart }) => setCart(cart);
-
+  const handleUpdateCart = ({ cart }) => setCart(cart);  
+  console.log(handleUpdateCart);
   const removeItem = () => commerce.cart.remove(id).then(handleUpdateCart);
   const decrementQuantity = () => {
     quantity > 1
@@ -41,18 +40,20 @@ export default function CartPage() {
   if (isEmpty) return <p>Your cart is empty</p>;
 
   return (
-    <div>
-      <h1>Cart</h1>
-
+    <div className="w-[80%] mx-auto flex items-center justify-center">
+      <div className="w-[500px]">
       {line_items.map((item) => (
         <CartItem key={item.id} {...item} />
       ))}
-
-      <hr />
-
       <p>
         <strong>Sub total:</strong> {subtotal.formatted_with_symbol}
-      </p>
+      </p>        
+      </div>
+
+      <div className="w-[500px] bg-[red] h-96">
+
+      </div>
+
     </div>
   );
 }

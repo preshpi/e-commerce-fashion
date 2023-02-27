@@ -1,15 +1,22 @@
-import Link from 'next/link';
-import Category from './Category';
+import Link from "next/link";
+import { useState } from "react";
+import Category from "./Category";
 
 export default function CategoryList({ categories }) {
+  const [showAll, setShowAll] = useState(false);
+
   if (!categories) return null;
   console.log(categories);
 
+  const visibleCategories = showAll ? categories : categories.slice(0, 5);
+
   return (
     <div className="mt-[40px] w-[95%] mx-auto">
-      <h2 className="text-center text-3xl font-bold mb-[3%]">Shop By Cartegories</h2>
+      <h2 className="text-center text-3xl font-bold mb-[3%]">
+        Shop By Categories
+      </h2>
       <ul className="grid lg:grid-cols-5 md:grid-cols-4 gap-[50px] items-center justify-center">
-        {categories.map((category) => (
+        {visibleCategories.map((category) => (
           <li key={category.slug}>
             <Link
               href={`/categories/${category.slug}`}
@@ -33,6 +40,22 @@ export default function CategoryList({ categories }) {
           </li>
         ))}
       </ul>
+      {showAll && (
+        <button
+          className="underline text-black font-bold py-2 px-4 rounded-full my-4 hover:text-gray-700"
+          onClick={() => setShowAll(false)}
+        >
+          View Less
+        </button>
+      )}
+      {!showAll && categories.length > 5 && (
+        <button
+          className="underline text-black font-bold py-2 px-4 rounded-full my-4 hover:text-gray-700"
+          onClick={() => setShowAll(true)}
+        >
+          View All
+        </button>
+      )}
     </div>
   );
 }

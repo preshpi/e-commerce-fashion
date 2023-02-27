@@ -2,64 +2,67 @@ import React, { useState, useEffect, useRef } from "react";
 import {
   AiOutlineClose,
   AiOutlineMenu,
-  AiOutlineHeart,
   AiOutlineShoppingCart,
   AiOutlineSearch,
 } from "react-icons/ai";
+import FavouriteButton from "./FavouriteButton";
 import { RxPerson } from "react-icons/rx";
+import Link from "next/link";
 
-const Navbar = () => {
+const Navbar = ({ count }) => {
   const [nav, setNav] = useState(false);
   const handleClick = () => setNav(!nav);
   const handleClose = () => setNav(!nav);
 
-   const [searchQuery, setSearchQuery] = useState("");
-   const [currentPlaceholder, setCurrentPlaceholder] = useState("Search");
-   const placeholders = ["clothes", "shoes", "bags", "jewelry", "kids"];
+  const [searchQuery, setSearchQuery] = useState("");
+  const [currentPlaceholder, setCurrentPlaceholder] = useState("Search");
+  const placeholders = ["clothes", "shoes", "bags", "jewelry", "kids"];
 
-   const handleSearch = () => {
-     // Add your search logic here
-   };
+  const handleSearch = () => {
+    // Add your search logic here
+  };
 
-   const handleInputChange = (e) => {
-     setSearchQuery(e.target.value);
-   };
+  const handleInputChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
 
-   useEffect(() => {
-     const intervalId = setInterval(() => {
-       setCurrentPlaceholder(
-         placeholders[Math.floor(Math.random() * placeholders.length)]
-       );
-     }, 3000);
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentPlaceholder(
+        placeholders[Math.floor(Math.random() * placeholders.length)]
+      );
+    }, 3000);
 
-     return () => {
-       clearInterval(intervalId);
-     };
-   }, []);
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []);
 
-   const navbarRef = useRef(null);
+  const navbarRef = useRef(null);
 
-   useEffect(() => {
-     const handleClickOutside = (event) => {
-       if (navbarRef.current && !navbarRef.current.contains(event.target)) {
-         handleClose();
-       }
-     };
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (navbarRef.current && !navbarRef.current.contains(event.target)) {
+        handleClose();
+      }
+    };
 
-     if (nav) {
-       window.addEventListener("click", handleClickOutside);
-     }
+    if (nav) {
+      window.addEventListener("click", handleClickOutside);
+    }
 
-     return () => {
-       window.removeEventListener("click", handleClickOutside);
-     };
-   }, [nav]);
+    return () => {
+      window.removeEventListener("click", handleClickOutside);
+    };
+  }, [nav]);
   return (
     <div className="top-0 relative mx-auto p-5 w-full">
       {/* large screen */}
       <div className="lg:block md:block hidden">
-        <div className="flex justify-between ">
-          <h1 className="text-3xl">FashionFlair</h1>
+        <div className="flex justify-between">
+          <Link href="/">
+            <h1 className="text-3xl">FashionFlair</h1>
+          </Link>
 
           <form className="items-center justify-center relative lg:w-[500px] md:w-[300px]">
             <input
@@ -76,14 +79,20 @@ const Navbar = () => {
 
           <div className="items-center justify-center">
             <ul className="flex space-x-6 items-center justify-center text-xl">
-              <li className="cursor-pointer">
-                <AiOutlineHeart />
+              <li className="cursor-pointer flex">
+                <Link href="/favourite">
+                  <FavouriteButton {...count} />
+                </Link>
               </li>
               <li className="cursor-pointer">
-                <AiOutlineShoppingCart />
+                <Link href="/cart">
+                  <AiOutlineShoppingCart />
+                </Link>
               </li>
               <li className="cursor-pointer">
-                <RxPerson />
+                <Link href="/profile">
+                  <RxPerson />
+                </Link>
               </li>
             </ul>
           </div>
@@ -97,7 +106,7 @@ const Navbar = () => {
             {!nav ? (
               <div className="flex items-center justify-center space-x-5">
                 <AiOutlineMenu className="text-[28px] cursor-pointer text-black" />
-                <h1 className="text-3xl">FlaireStyle</h1>
+                <h1 className="text-3xl">FlaireFlair</h1>
               </div>
             ) : (
               <AiOutlineClose className="hidden" />

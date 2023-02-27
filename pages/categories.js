@@ -14,7 +14,6 @@ export async function getStaticProps() {
 export default function CategoriesPage({ categories }) {
   return (
     <>
-      <h1>Categories</h1>
       <CategoryList categories={categories} />
     </>
   );

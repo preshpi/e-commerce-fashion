@@ -12,9 +12,9 @@ export async function getStaticProps() {
 }
 
 export default function ProductPage({ products }) {
+
   return (
     <>
-      <h1>Products</h1>
       <ProductList products={products} />
     </>
   );
