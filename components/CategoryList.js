@@ -6,7 +6,6 @@ export default function CategoryList({ categories }) {
   const [showAll, setShowAll] = useState(false);
 
   if (!categories) return null;
-  console.log(categories);
 
   const visibleCategories = showAll ? categories : categories.slice(0, 5);
 
@@ -15,7 +14,7 @@ export default function CategoryList({ categories }) {
       <h2 className="text-center text-3xl font-bold mb-[3%]">
         Shop By Categories
       </h2>
-      <ul className="grid lg:grid-cols-5 md:grid-cols-4 gap-[50px] items-center justify-center">
+      <ul className="grid-cols-2 grid lg:grid-cols-5 md:grid-cols-4 gap-[50px] items-center justify-center">
         {visibleCategories.map((category) => (
           <li key={category.slug}>
             <Link

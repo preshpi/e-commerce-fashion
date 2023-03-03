@@ -2,16 +2,20 @@ import Layout from "../components/Layout";
 import { CartProvider } from "./context/cart";
 import "../styles/globals.css";
 
-const App = ({ Component, pageProps }) => {
+const App = () => {
   return (
+    // <div>
+    //   <Layout>
+    //     <div className="">
+    //       <CartProvider>
+    //         <Component {...pageProps} />
+    //       </CartProvider>
+    //     </div>
+    //   </Layout>
+    // </div>
+
     <div>
-      <Layout>
-        <div className="">
-          <CartProvider>
-            <Component {...pageProps} />
-          </CartProvider>
-        </div>
-      </Layout>
+      heyy
     </div>
   );
 };

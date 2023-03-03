@@ -72,7 +72,7 @@ const Navbar = ({ count }) => {
               value={searchQuery}
               onChange={handleInputChange}
             />
-            <button className="absolute top-0 right-0  font-bold py-2 px-4 text-white text-2xl h-full bg-black">
+            <button className="absolute top-0 right-0  font-bold py-2 px-4 text-white text-2xl h-full bg-black cursor-pointer">
               <AiOutlineSearch />
             </button>
           </form>

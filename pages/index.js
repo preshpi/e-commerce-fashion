@@ -1,11 +1,5 @@
 import commerce from "../lib/commerce";
-import ProductList from "../components/ProductList";
-import ShopByCart from "../components/ShopbyCategories";
 import Banner from "../components/Banner";
-import ShopByBrand from "../components/ShopByBrand";
-import Banner2 from "../components/Banner2";
-import StyleGallery from "../components/styleGallery";
-import TrendProduct from "../components/TrendProduct";
 import Head from "next/head";
 
 export async function getStaticProps() {
@@ -31,13 +25,9 @@ export default function IndexPage({ merchant, categories, products }) {
       </Head>
 
       <h1>{merchant.business_name}</h1>
-      <ShopByCart categories={categories} />
+      {/* <ShopByCart categories={categories} /> */}
       <Banner />
-      <ProductList products={products} />
-      {/* <TrendProduct categories={categories} /> */}
-      {/* <ShopByBrand /> */}
-      {/* <Banner2 />
-      <StyleGallery /> */}
+      {/* <ProductList products={products} /> */}
     </>
   );
 }

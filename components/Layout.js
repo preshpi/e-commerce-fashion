@@ -1,12 +1,13 @@
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 
-const Layout = ({children}) => {
+const Layout = () => {
     return ( 
         <div>
-            <Navbar/>
+            {/* <Navbar/>
             {children}
-            <Footer/>
+            <Footer/> */}
+            heepemmfr
         </div>
      );
 }

@@ -8,11 +8,13 @@
   "dependencies": {
     "@chec/commerce.js": "^2.8.0",
     "@next/font": "^13.1.6",
+    "antd": "^5.2.3",
     "next": "latest",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hot-toast": "^2.4.0",
     "react-icons": "^4.7.1",
+    "react-loading-skeleton": "^3.1.1",
     "react-multi-carousel": "^2.8.2"
   },
   "devDependencies": {

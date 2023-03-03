@@ -3,7 +3,6 @@ import ProductList from "../components/ProductList";
 
 export async function getStaticProps() {
   const { data: products } = await commerce.products.list();
-
   return {
     props: {
       products,
@@ -12,10 +11,11 @@ export async function getStaticProps() {
 }
 
 export default function ProductPage({ products }) {
+ 
 
   return (
     <>
-      <ProductList products={products} />
+   <ProductList products={products} />
     </>
   );
 }
