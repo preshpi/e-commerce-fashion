@@ -1,6 +1,5 @@
 import FavouriteButton from "../../components/FavouriteButton";
 import commerce from "../../lib/commerce";
-import { useCartDispatch } from "../context/cart";
 import Head from "next/head";
 import Link from "next/link";
 import { TbTruckDelivery } from "react-icons/tb";
@@ -36,10 +35,6 @@ export async function getStaticPaths() {
 export default function ProductPage({ product }) {
   console.log(product);
 
-  const { setCart } = useCartDispatch();
-
-  const addToCart = () =>
-    commerce.cart.add(product.id).then(({ cart }) => setCart(cart));
   return (
     <>
       <Head>

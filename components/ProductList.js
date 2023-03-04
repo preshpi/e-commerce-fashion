@@ -1,6 +1,5 @@
 import Product from "./Prod";
 import { useState, useEffect } from "react";
-import { useCartDispatch } from "../pages/context/cart";
 import commerce from "../lib/commerce";
 import toast, { Toaster } from "react-hot-toast";
 import Skeleton from "react-loading-skeleton";
@@ -8,8 +7,6 @@ import "react-loading-skeleton/dist/skeleton.css";
 
 const ProductCard = ({ product }) => {
   const { setCart } = useCartDispatch();
-  const addToCart = () =>
-    commerce.cart.add(product.id).then(({ cart }) => setCart(cart));
   const [showCart, setShowCart] = useState(false);
   const handleMouseEnter = () => setShowCart(true);
   const handleMouseLeave = () => setShowCart(false);
