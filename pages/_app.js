@@ -1,5 +1,5 @@
 import Layout from "../components/Layout";
-import { CartProvider } from "./context/cart";
+// import { CartProvider } from "./context/cart";
 import "../styles/globals.css";
 
 const App = () => {
